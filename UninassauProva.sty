@@ -1,0 +1,149 @@
+\ProvidesPackage{UninassauProva}
+
+%==============================================================================
+% Agradecimento especial ao Prof. Valdex Santos
+% 
+%   Este template foi feito baseando-se no template do Professor Valdex Santos para o IFBA, o qual está disponível no Overleaf. Links disponibilizados pelo professor:
+%
+%       https://giveit.link/ProfValdexSantos
+%
+%
+%   UninassauProva - v0.1
+%       Evandro J.R. Silva
+%==============================================================================
+
+
+
+%------------------------------------------------------------------------------
+% Pacotes ---------------------------------------------------------------------
+
+% Para permitir PT-BR
+\usepackage[brazil]{babel}
+
+% Encoding dos textos
+\usepackage[utf8]{inputenc} % aparentemente não é mais necessário, pois se tornou o padrão
+\usepackage[T1]{fontenc} % encoding das fontes
+
+% Para configurar o layout da página
+\usepackage[top=2cm, left=1.5cm, right=1.5cm, bottom=2cm]{geometry}
+
+% Para lidar com links e citações (incluindo cores)
+\usepackage{url}
+\usepackage[colorlinks=true, urlcolor=magenta, citecolor=red, linkcolor=blue, bookmarks=true]{hyperref}
+
+% Para utilizar imanges (gárficos em geral)
+\usepackage{graphicx}
+
+% Para lidar com o ambiente de matemática
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+
+% Para auxílio em tabelas
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+
+% Ambientes com enumerações e listagens
+\usepackage{paralist} % ambiente para utilizar enumerate e itemize dentro dos parágrafos
+\usepackage[sharp]{easylist} % listas personalizadas
+\usepackage[shortlabels]{enumitem} % personalizar ambientes enumerate e itemize com [A]
+
+% Ambiente para permitir a impressão de símbolos do próprio LaTEx
+\usepackage{verbatim}
+
+% Para adicionar código-fonte
+\usepackage{listings}
+
+% Utilização de cores
+\usepackage{xcolor}
+
+% Testing tool
+\usepackage{etoolbox}
+
+% Fonte Helvetica - similar a Arial
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+%------------------------------------------------------------------------------
+% Configurações ---------------------------------------------------------------
+
+% Contador de página iniciando no valor 1
+\setcounter{page}{1}
+% Estilo da numeração: arábico, ou seja, 1 2 3 4 ...
+\pagenumbering{arabic}
+
+
+
+%------------------------------------------------------------------------------
+% Definição de novos comandos -------------------------------------------------
+
+\newcommand{\logoInst}[1]{
+	\newcommand{\logo}{#1}
+}
+
+\newcommand{\logoSer}[1]{
+	\newcommand{\ser}{#1}
+}
+
+\newcommand{\Campus}[1]{
+	\newcommand{\campus}{#1}
+}
+
+\newcommand{\nomeCurso}[1]{
+	\newcommand{\curso}{#1}
+}
+
+\newcommand{\nomeProfessor}[1]{
+	\newcommand{\professor}{#1}
+}
+
+\newcommand{\nomeDisciplina}[1]{
+	\newcommand{\disciplina}{#1}
+}
+
+\newcommand{\TipoProva}[1]{
+	\newcommand{\tipoProva}{#1}
+}
+
+\newcommand{\QualProva}[1]{
+	\newcommand{\qualProva}{#1}
+}
+
+\newcommand{\Turma}[1]{
+	\newcommand{\turma}{#1}
+}
+
+\newcommand{\DataProva}[1]{
+	\newcommand{\data}{#1}
+}
+
+\newcommand{\cabecalho}{
+	\begin{table}
+		\begin{tabular}{| p{0.15\linewidth} | p{0.6\linewidth} | p{0.15\linewidth} |}
+			\hline
+			\centering \multirow{4}{*}{\ser} & \centering \small \textbf{CENTRO UNIVERSITÁRIO MAURÍCIO DE NASSAU DE} \ifdef{\campus}{\MakeUpperCase{\textbf{\campus}}}{XXX IES XXX} & \multirow{4}{*}{\logo}\\
+			&	\centering \small \textbf{CURSO DE GRADUAÇÃO EM} \ifdef{\curso}{\MakeUppercase{\textbf{\curso}}}{INSERIR O NOME DO CURSO}	&	\\
+			&	\centering \small \textbf{DISCIPLINA:} \ifdef{\disciplina}{\MakeUppercase{\textbf{\disciplina}}}{INSERIR O NOME DA DISCIPLINA}	&	\\
+				& \centering \small	\qualProva AVALIAÇÃO & \\
+			\hline
+		\end{tabular}
+	\end{table}
+}
+
+\newcommand{\info}{
+	%TODO
+	%	- Tabela de informações
+}
+
+
+
+%------------------------------------------------------------------------------
+% Traduções da classe EXAM ----------------------------------------------------
+\totalformat{Total: \totalpoints\ \points}
+\pointpoints{ponto}{pontos}
+\hqword{Questão: }
+\hpword{Valor: }
+\hsword{Pontuação}
+\htword{\textcolor{blue}{Total}}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução:}\enspace}
+\bonuspointpoints{Questão Desafio - bônus}{Questão Desafio - bônus}
