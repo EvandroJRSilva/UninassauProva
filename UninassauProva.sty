@@ -8,7 +8,7 @@
 %       https://giveit.link/ProfValdexSantos
 %
 %
-%   UninassauProva - v0.1
+%   UninassauProva - l0.7
 %       Evandro J.R. Silva
 %==============================================================================
 
@@ -131,20 +131,27 @@
 	\newcommand{\codTurma}{#1}
 }
 
+% Comandos para as observações -------------------------------------------------
+\newcommand{\instum}[1]{\def\primeiraInst{#1}}
+\newcommand{\instdois}[1]{\def\segundaInst{#1}}
+\newcommand{\insttres}[1]{\def\terceiraInst{#1}}
+\newcommand{\instquatro}[1]{\def\quartaInst{#1}}
+%\newcommand{\instcinco}[1]{\def\quintaInst{#1}}
+%\newcommand{\instseis}[1]{\def\sextaInst{#1}}
+
 
 % TODO
-%	- Cabeçalho com tabularray
 %	- Estudar classe Exam
 
 \newcommand{\cabecalho}{
-	\begin{table}
-		\begin{tabular}{ p{0.15\linewidth}  p{0.6\linewidth}  p{0.15\linewidth}}
-			\centering \multirow{4}{*}{\vspace{-0.5cm}\ser} & \centering \small \textbf{CENTRO UNIVERSITÁRIO MAURÍCIO DE NASSAU DE} \ifdef{\campus}{\MakeUppercase{\textbf{\campus}}}{XXX IES XXX} & \multirow{4}{*}{\vspace{-0.5cm}\logo}\\
-			&	\centering \small \textbf{CURSO DE GRADUAÇÃO EM} \ifdef{\curso}{\MakeUppercase{\textbf{\curso}}}{INSERIR O NOME DO CURSO}	&	\\
-			&	\centering \small \textbf{DISCIPLINA:} \ifdef{\disciplina}{\MakeUppercase{\textbf{\disciplina}}}{INSERIR O NOME DA DISCIPLINA}	&	\\
-				& \centering \textbf{\qualProva AVALIAÇÃO} & \\
-		\end{tabular}
-	\end{table}
+	\begin{tblr}{
+		cell{1-4}{2} = {c, wd=0.6\textwidth}
+		}
+		\SetCell[r=4]{halign=c, valign=m, wd=0.15\textwidth} \hspace{-2cm}\ser & \small \textbf{CENTRO UNIVERSITÁRIO MAURÍCIO DE NASSAU DE} \ifdef{\campus}{\MakeUppercase{\textbf{\campus}}}{XXX IES XXX} & \SetCell[r=4]{halign=c, valign=m, wd=0.15\textwidth} \hspace{2cm}\logo \\
+			& \small \textbf{CURSO DE GRADUAÇÃO EM} \ifdef{\curso}{\MakeUppercase{\textbf{\curso}}}{INSERIR O NOME DO CURSO} & \\
+			& \small \textbf{DISCIPLINA:} \ifdef{\disciplina}{\MakeUppercase{\textbf{\disciplina}}}{INSERIR O NOME DA DISCIPLINA}	&	\\
+			& \small \textbf{\qualProva AVALIAÇÃO} & \\
+	\end{tblr}
 }
 
 
@@ -163,17 +170,40 @@
 		cell{3}{6} = {c},
 		cell{4,5}{1,3,5} = {c, uniazul},
 		cell{3}{4} = {c},
-		cell{4}{1,2,4,5} = {c, valign=m}
+		cell{4}{1,2,4,5} = {c, valign=m},
+		cell{5}{6} = {c}
 		}
 		
 		\textbf{ALUNO} & \SetCell[c=3]{} & & & \textbf{MATRÍCULA} & \\
 		\textbf{DISCIPLINA} & \SetCell[c=3]{c}\disciplina & & & \textbf{DATA DA PROVA} & \dataProva \\
 		\textbf{PROFESSOR} & \SetCell[c=3]{c}\professor & & & \textbf{TIPO DE PROVA} & \tipoProva \\
-		\SetCell{c, valign=m}\textbf{TURMA} & \turma & \SetCell[r=2]{c, wd=0.13\linewidth} \textbf{CÓDIGO DA TURMA} & \SetCell{wd=0.05\linewidth}\codTurma & \textbf{NOTA} & \\
+		\SetCell[r=2]{c, valign=m}\textbf{TURMA} & \SetCell[r=2]{c, valign=m}\turma & \SetCell[r=2]{c, wd=0.13\linewidth} \textbf{CÓDIGO DA TURMA} & \SetCell[r=2]{wd=0.05\linewidth}\codTurma & \SetCell[r=2]{c, valign=m}\textbf{NOTA} & \\
 		 & & & & & \\
+	\end{tblr}\\
+	\begin{tblr}{r}
+		\SetCell{wd=0.96\linewidth}\tiny l0.7 baseado em CCG-MDL-10 Versão 02
+	\end{tblr}\\
+	\SetTblrInner{rowsep=1pt}
+	\begin{tblr}{
+			hline{1, 6} = {1pt, solid},
+			colspec = {|X|}}
+		{\large \textbf{ATENÇÃO:}}\\
+		\ifdefempty{\primeiraInst}{}{\scriptsize \hspace{1cm} - \primeiraInst}\\
+		\ifdefempty{\segundaInst}{}{\scriptsize \hspace{1cm} - \segundaInst}\\
+		\ifdefempty{\terceiraInst}{}{\scriptsize \hspace{1cm} - \terceiraInst}\\
+		\ifdefempty{\quartaInst}{}{\scriptsize \hspace{1cm} - \quartaInst}\\
 	\end{tblr}
 }
 
+
+%------------------------------------------------------------------------------
+% Definição de comandos de parênteses, colchetes e chaves ---------------------
+
+\newcommand{\pr}[1]{\ensuremath{\left[#1\right]}} %colchetes que acompanham o tamano da expressão matemática
+\newcommand{\pc}[1]{\ensuremath{\left(#1\right)}} %idem anterior: parenteses curvos
+\newcommand{\chav}[1]{\ensuremath{\left\{#1\right\}}} %idem: chaves
+
+\everymath{\displaystyle}%para as formulas math ficar do msm tamanho do texto
 
 
 %------------------------------------------------------------------------------
