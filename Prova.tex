@@ -18,7 +18,7 @@
 	\info
 	
 	% Descomente a linha seguinte caso você queira gerar um PDF com as soluções às questões.
-	%\printanswers
+	\printanswers
 	
 	%---------------------------------------------------------------------------
 	% QUESTÕES -----------------------------------------------------------------
@@ -105,7 +105,7 @@
 			\end{enumerate}
 		%-----------------------------------------------------------------------
 		\question
-		Utilizando \texttt{multicol} para separar as alternativas em uma mesma linha:
+		Utilizando \texttt{multicols} para separar as alternativas em uma mesma linha:
 			\begin{multicols}{5}
 				\begin{enumerate}[(A)]
 					\item Alternativa 1
@@ -115,6 +115,36 @@
 					\item Alternativa 5
 				\end{enumerate}
 			\end{multicols}
+		%-----------------------------------------------------------------------
+		\question
+		Uma questão de múltipla escolha pode ter uma alternativa já marcada como a correta:
+			\begin{choices}
+				\justifying
+				\CorrectChoice A alternativa correta vai aparecer se a opção \texttt{printanswers} estiver ativa no início do documento.
+				\choice Alternativa errada.
+				\choice Alternativa errada.
+				\choice Alternativa errada.
+				\choice Alternativa errada.
+			\end{choices}
+		%-----------------------------------------------------------------------
+		\question
+		\justifying
+		Uma questão pode ter outros tipos de solução (no arquivo UninassauProva.sty tem um trecho onde é possível fazer outras configurações no ambiente de solução):
+			\begin{solution}
+				\justifying Solução utilizando o ambiente \texttt{solution}. Se \texttt{printanswers} estiver desabilitado, um espaço em branco do mesmo tamanho da solução será posto no lugar, como se tivesse sido utilizado o comando \texttt{vspace}. Além disso todos os ambientes de solução recebem um parâmetro a mais definindo a altura que o ambiente deve ter caso a impressão da solução esteja desabilitada.
+			\end{solution}
+			\begin{solutionorbox}
+				Solução com o ambiente \texttt{solutionorbox}. Se a solução não for impressa, haverá no lugar uma caixa de texto em branco.
+			\end{solutionorbox}
+			\begin{solutionorlines}
+				Solução com o ambiente \texttt{solutionorlines}. Se a solução não for impressa, haverá no lugar linhas para o aluno escrever.
+			\end{solutionorlines}
+			\begin{solutionordottedlines}
+				Solução com o ambiente \texttt{solutionordottedlines}. Se a solução não for impressa, haverá no lugar linhas pontilhadas para o aluno escrever.
+			\end{solutionordottedlines}
+			\begin{solutionorgrid}
+				Solução com o ambiente \texttt{solutionorgrid}. Se a solução não for impressa, haverá no lugar uma grade.
+			\end{solutionorgrid}
 		%-----------------------------------------------------------------------
 		% A linha abaixo serve para formatar a aparência da questão bônus.
 		\bonusqformat{\textbf{Questão bônus} \dotfill [\thepoints]}

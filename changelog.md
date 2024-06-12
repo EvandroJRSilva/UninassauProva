@@ -28,6 +28,10 @@
 
 - É possível definir no cabeçalho mostrar qual é a avaliação, ou seja, primeira, segunda, final, ou segunda chamada.
 
-### TO DO
+## l1.0
 
-- Permitir ao professor escrever as soluções nas questões e gerar PDF com e sem solução.
+- O valor das pontuações volta a ser mostrada no início de cada questão, pois ser melhor esteticamente.
+
+- Aparência das partes e alternativas alterado, para refletir a forma mais comum utilizada no Brasil.
+
+- Adicionadas as opções (no arquivo .sty) de modificar as cores utilizadas ao imprimir as soluções.

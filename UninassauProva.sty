@@ -8,7 +8,7 @@
 %       https://giveit.link/ProfValdexSantos
 %
 %
-%   UninassauProva - l0.8
+%   UninassauProva - l1.0
 %       Evandro J.R. Silva
 %==============================================================================
 
@@ -27,7 +27,7 @@
 \usepackage[T1]{fontenc} % encoding das fontes
 
 % Para configurar o layout da página
-\usepackage[top=3cm, left=1.5cm, right=1.5cm, bottom=2cm]{geometry}
+\usepackage[top=2cm, left=1.5cm, right=1.5cm, bottom=2cm]{geometry}
 
 % Para lidar com links e citações (incluindo cores)
 \usepackage{url}
@@ -62,7 +62,7 @@
 
 % Testing tools
 \usepackage{etoolbox}
-\usepackage{ifthen}
+%\usepackage{ifthen} % já é automaticamente carregado pela classe Exam
 
 % Fonte Helvetica - similar a Arial
 %\usepackage{helvet}
@@ -80,14 +80,39 @@
 \setcounter{page}{1}
 % Estilo da numeração: arábico, ou seja, 1 2 3 4 ...
 \pagenumbering{arabic}
-% Configurando as pontuação para aparecer na margem esquerda, entre colchetes
-\pointsinleftmargin \boxedpoints
+
+% Configurando as pontuação para aparecer na margem esquerda, entre colchetes. Houve uma preferência sobre a pontuação aparecer no início da questão, por razões estéticas. Porém, se você preferir que apareçam nas marges, basta descomentar a linha seguinte.
+%\pointsinleftmargin \boxedpoints
 
 % Uma possibilidade para fazer a pontuação aparecer na margem direita
 %\pointsinrightmargin \boxedpoints \setlength{\rightpointsmargin}{2cm}
 
-% Enumeração de subpartes: numeração romana com letras maiúsculas
-%\renewcommand{\thesubpart}{\Roman{subpartno}}
+% Modificando a aparência das partes. Em vez de (a) teremos a)
+\renewcommand{\partlabel}{\thepartno)}
+
+% Modificando as letras em questões de múltipla escolha. Em vez de A. teremos (a)
+\renewcommand{\choicelabel}{(\alph{choice})}
+
+% Modificando o tamanho da justificação das alternativas. Estavam com uma separação muito grande
+\renewcommand{\choiceshook}{\setlength{\leftmargin}{20pt}}
+
+% Configurações sobre ambientes de respostas
+
+% A forma como a solução vai aparecer
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução:}\enspace}
+
+% O comando abaixo vai deixar todo o ambiente de solução com uma cor de fundo cinza
+%\shadedsolutions
+
+% Para selecionar outra cor de fundo, basta utilizar o comando a seguir
+% \definecolor{SolutionColor}{rgb}{0.8,0.9,1}
+
+% Para que os ambientes de solução não estejam envoltos um retângulo e nem tenham uma cor de fundo, basta utilizar o comando a seguir:
+% \unframedsolutions
+
+% Para modificar a aparência do texto da solução podem ser usadas as seguintes alternativas:
+%  \SolutionEmphasis{\itshape\small} -> o texto ficará menor e em itálico
+%  \SolutionEmphasis{\color{red}} -> o texto ficará vermelho
 
 %------------------------------------------------------------------------------
 % Definição de novos comandos -------------------------------------------------
@@ -185,7 +210,7 @@
 		 & & & & & \\
 	\end{tblr}\\
 	\begin{tblr}{r}
-		\SetCell{0.98\textwidth}\tiny l0.7 baseado em CCG-MDL-10 Versão 02
+		\SetCell{0.98\textwidth}\tiny l1.0 baseado em CCG-MDL-10 Versão 02
 	\end{tblr}\\
 	%\SetTblrInner{rowsep=1pt}
 	\begin{tblr}{
@@ -214,9 +239,8 @@
 % Traduções da classe EXAM ----------------------------------------------------
 \totalformat{Total: \totalpoints\ \points}
 \pointpoints{ponto}{pontos}
-\hqword{Questão: }
-\hpword{Valor: }
-\hsword{Pontuação}
-\htword{\textcolor{blue}{Total}}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solução:}\enspace}
+%\hqword{Questão: }
+%\hpword{Valor: }
+%\hsword{Pontuação}
+%\htword{\textcolor{blue}{Total}}
 \bonuspointpoints{ponto}{pontos}
