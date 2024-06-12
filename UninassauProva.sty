@@ -8,7 +8,7 @@
 %       https://giveit.link/ProfValdexSantos
 %
 %
-%   UninassauProva - l0.7
+%   UninassauProva - l0.8
 %       Evandro J.R. Silva
 %==============================================================================
 
@@ -19,13 +19,15 @@
 
 % Para permitir PT-BR
 \usepackage[brazil]{babel}
+% Para permitir justificação do texto com hífens
+\usepackage{ragged2e}
 
 % Encoding dos textos
 \usepackage[utf8]{inputenc} % aparentemente não é mais necessário, pois se tornou o padrão
 \usepackage[T1]{fontenc} % encoding das fontes
 
 % Para configurar o layout da página
-\usepackage[top=2cm, left=1.5cm, right=1.5cm, bottom=2cm]{geometry}
+\usepackage[top=3cm, left=1.5cm, right=1.5cm, bottom=2cm]{geometry}
 
 % Para lidar com links e citações (incluindo cores)
 \usepackage{url}
@@ -38,14 +40,10 @@
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 
 % Para auxílio em tabelas
-\usepackage{multirow}
-\usepackage{multicol}
-\usepackage{array}
-\usepackage{hhline}
 \usepackage{tabularray}
 
 % Ambientes com enumerações e listagens
-\usepackage{paralist} % ambiente para utilizar enumerate e itemize dentro dos parágrafos
+\usepackage{multicol, paralist} % ambiente para utilizar enumerate e itemize dentro dos parágrafos
 \usepackage[sharp]{easylist} % listas personalizadas
 \usepackage[shortlabels]{enumitem} % personalizar ambientes enumerate e itemize com [A]
 
@@ -62,8 +60,9 @@
 \definecolor{linhazul}{RGB}{121,148,180}
 \definecolor{linhazulescuro}{RGB}{45,84,133}
 
-% Testing tool
+% Testing tools
 \usepackage{etoolbox}
+\usepackage{ifthen}
 
 % Fonte Helvetica - similar a Arial
 %\usepackage{helvet}
@@ -81,8 +80,14 @@
 \setcounter{page}{1}
 % Estilo da numeração: arábico, ou seja, 1 2 3 4 ...
 \pagenumbering{arabic}
+% Configurando as pontuação para aparecer na margem esquerda, entre colchetes
+\pointsinleftmargin \boxedpoints
 
+% Uma possibilidade para fazer a pontuação aparecer na margem direita
+%\pointsinrightmargin \boxedpoints \setlength{\rightpointsmargin}{2cm}
 
+% Enumeração de subpartes: numeração romana com letras maiúsculas
+%\renewcommand{\thesubpart}{\Roman{subpartno}}
 
 %------------------------------------------------------------------------------
 % Definição de novos comandos -------------------------------------------------
@@ -140,29 +145,28 @@
 %\newcommand{\instseis}[1]{\def\sextaInst{#1}}
 
 
-% TODO
-%	- Estudar classe Exam
-
+\SetTblrInner{rowsep=0pt}
 \newcommand{\cabecalho}{
 	\begin{tblr}{
 		cell{1-4}{2} = {c, wd=0.6\textwidth}
 		}
-		\SetCell[r=4]{halign=c, valign=m, wd=0.15\textwidth} \hspace{-2cm}\ser & \small \textbf{CENTRO UNIVERSITÁRIO MAURÍCIO DE NASSAU DE} \ifdef{\campus}{\MakeUppercase{\textbf{\campus}}}{XXX IES XXX} & \SetCell[r=4]{halign=c, valign=m, wd=0.15\textwidth} \hspace{2cm}\logo \\
+		\SetCell[r=4]{halign=c, valign=m, wd=0.15\textwidth} \hspace{-2cm}\ser & \ \small \textbf{CENTRO UNIVERSITÁRIO MAURÍCIO DE NASSAU DE} \ifdef{\campus}{\MakeUppercase{\textbf{\campus}}}{XXX IES XXX} & \SetCell[r=4]{halign=c, valign=m, wd=0.15\textwidth} \hspace{2cm}\logo \\
 			& \small \textbf{CURSO DE GRADUAÇÃO EM} \ifdef{\curso}{\MakeUppercase{\textbf{\curso}}}{INSERIR O NOME DO CURSO} & \\
 			& \small \textbf{DISCIPLINA:} \ifdef{\disciplina}{\MakeUppercase{\textbf{\disciplina}}}{INSERIR O NOME DA DISCIPLINA}	&	\\
-			& \small \textbf{\qualProva AVALIAÇÃO} & \\
+			& \ifbool{ProvaFinal}{\textbf{AVALIAÇÃO FINAL}}{\ifbool{SegundaChamada}{\large \textbf{\qualProva AVALIAÇÃO - SEGUNDA CHAMADA}}{\large \textbf{\qualProva AVALIAÇÃO}}} & \\
 	\end{tblr}
 }
 
 
-\SetTblrInner{rowsep=0pt}
+\SetTblrInner{rowsep=1pt}
 \newcommand{\info}{
 	\begin{tblr}{
 		hline{1, 6} = {1pt, solid},
 		hline{2-4} = {linhazulescuro, 1pt, solid},
 		vline{1-3,5-7} = {1pt, solid},
 		vline{4} = {linhazulescuro, 1pt, solid},
-		column{6} = {wd=0.15\linewidth},
+		column{1,3,6} = {wd=0.15\textwidth},
+		column{4} = {wd=0.055\textwidth},
 		cell{1}{1,5} = {c, uniazul},
 		cell{2}{1,5} = {c, uniazul},
 		cell{2}{6} = {c},
@@ -177,21 +181,21 @@
 		\textbf{ALUNO} & \SetCell[c=3]{} & & & \textbf{MATRÍCULA} & \\
 		\textbf{DISCIPLINA} & \SetCell[c=3]{c}\disciplina & & & \textbf{DATA DA PROVA} & \dataProva \\
 		\textbf{PROFESSOR} & \SetCell[c=3]{c}\professor & & & \textbf{TIPO DE PROVA} & \tipoProva \\
-		\SetCell[r=2]{c, valign=m}\textbf{TURMA} & \SetCell[r=2]{c, valign=m}\turma & \SetCell[r=2]{c, wd=0.13\linewidth} \textbf{CÓDIGO DA TURMA} & \SetCell[r=2]{wd=0.05\linewidth}\codTurma & \SetCell[r=2]{c, valign=m}\textbf{NOTA} & \\
+		\SetCell[r=2]{c, valign=m}\textbf{TURMA} & \SetCell[r=2]{c, valign=m}\turma & \SetCell[r=2]{c} \textbf{CÓDIGO DA TURMA} & \SetCell[r=2]{c}\codTurma & \SetCell[r=2]{c, valign=m}\textbf{NOTA} & \\
 		 & & & & & \\
 	\end{tblr}\\
 	\begin{tblr}{r}
-		\SetCell{wd=0.96\linewidth}\tiny l0.7 baseado em CCG-MDL-10 Versão 02
+		\SetCell{0.98\textwidth}\tiny l0.7 baseado em CCG-MDL-10 Versão 02
 	\end{tblr}\\
-	\SetTblrInner{rowsep=1pt}
+	%\SetTblrInner{rowsep=1pt}
 	\begin{tblr}{
 			hline{1, 6} = {1pt, solid},
 			colspec = {|X|}}
 		{\large \textbf{ATENÇÃO:}}\\
-		\ifdefempty{\primeiraInst}{}{\scriptsize \hspace{1cm} - \primeiraInst}\\
-		\ifdefempty{\segundaInst}{}{\scriptsize \hspace{1cm} - \segundaInst}\\
-		\ifdefempty{\terceiraInst}{}{\scriptsize \hspace{1cm} - \terceiraInst}\\
-		\ifdefempty{\quartaInst}{}{\scriptsize \hspace{1cm} - \quartaInst}\\
+		\ifdefempty{\primeiraInst}{}{\scriptsize \hspace{0.5cm} - \primeiraInst}\\
+		\ifdefempty{\segundaInst}{}{\scriptsize \hspace{0.5cm} - \segundaInst}\\
+		\ifdefempty{\terceiraInst}{}{\scriptsize \hspace{0.5cm} - \terceiraInst}\\
+		\ifdefempty{\quartaInst}{}{\scriptsize \hspace{0.5cm} - \quartaInst}\\
 	\end{tblr}
 }
 
@@ -215,4 +219,4 @@
 \hsword{Pontuação}
 \htword{\textcolor{blue}{Total}}
 \renewcommand{\solutiontitle}{\noindent\textbf{Solução:}\enspace}
-\bonuspointpoints{Questão Desafio - bônus}{Questão Desafio - bônus}
+\bonuspointpoints{ponto}{pontos}

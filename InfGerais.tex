@@ -1,12 +1,16 @@
 %===============================================================================
 % Cabeçalho e Rodapé -----------------------------------------------------------
 %===============================================================================
+
+% Estilo da página configurado para ter Cabeçalho e Rodapé. Para mais opções verifique a documentação das classe em: https://ctan.org/pkg/exam
 \pagestyle{headandfoot}
+% Cada {} corresponde à esquerda, centro e direita do Cabeçalho ou Rodapé
 \firstpageheader{}{}{}
-\runningheader{}{}{}
+\runningheader{}{\cabecalho}{}
 \runningheadrule
 
-\firstpagefooter{\professor}{\disciplina}{Pág. \thepage\ de \numpages}
+\firstpagefooter{\professor}{}{\disciplina}
+\firstpagefootrule
 \runningfooter{\professor}{\disciplina}{Pág. \thepage\ de \numpages}
 \runningfootrule
 
@@ -21,35 +25,44 @@
 \Campus{Teresina}
 
 % Insira o nome do curso a seguir. Ex.: Bacharelado em Direito
-\NomeCurso{Análise e Desenvolvimento de Sistemas}
+\NomeCurso{Nome do Curso}
 
 % Insira o nome do(a) Professor(a). Ex.: Fulano da Silva
-\NomeProfessor{Evandro J.R. Silva}
+\NomeProfessor{Nome do(a) Professor(a)}
 
 % Insira o nome da Disciplina. Ex.: Citologia
-\NomeDisciplina{Matemática Aplicada}
+\NomeDisciplina{Nome da Disciplina}
 
 % Insira a data da prova. Ex.: 10/10/24
 \DataProva{04/06/2024}
 
 % Insira a turma. Ex.: FAP0241124NMA
-\Turma{FAP0190101GMA}
+\Turma{FAP0101010GMA}
 
 % Insira o Código da Turma. Exemplo: A
 \CodTurma{A}
 
 % Insira o tipo de prova. Ex.: 01, Tipo 01.
-\TipoProva{01}
+\TipoProva{}
 
-% Insira a prova. Ex.: 1ª, 2ª, Final
-\QualProva{2ª}
+% Insira a prova. Ex.: 1ª, 2ª
+\QualProva{1ª}
 
+% Configurando a prova como de primeira chamada por padrão
+\newbool{SegundaChamada} % Quando criado é false por padrão
+% Descomentar a linha abaixo, caso a prova seja de Segunda Chamada
+%\booltrue{SegundaChamada}
+
+% Configurando a possibilidade de ser Prova Final
+\newbool{ProvaFinal} % Quando criado é false por padrão
+% Descomentar a linha seguinte caso seja a Prova Final
+%\booltrue{ProvaFinal}
 
 %===============================================================================
 % Instruções para a Avaliação --------------------------------------------------
 %===============================================================================
 
-% OBS.: deixe em branco as que não quiser colocar
+% OBS.: deixe em branco as que não quiser colocar. Mas caso queira cinco ou mais instruções, descomente \instcinco{} em diante, e utilize novos comandos caso seja necessário. No arquivo UninassauProva.sty procure pelos trechos em que os comandos são criados, como também o trecho em que os comandos são mostrados na prova.
 
 \instum{A avaliação somente poderá ser entregue depois de decorridos 50 min de seu início.}
  
