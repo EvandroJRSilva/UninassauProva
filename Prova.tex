@@ -33,8 +33,8 @@
 		Este é o exemplo de uma questão contendo equações ou fórmulas:\\ 
 		$x^{2} + 2\pi + \pi^{2}$
 		%-----------------------------------------------------------------------
-		\question % Definir a pontuação é opcional
-		Mais uma questão de exemplo: a definição da pontuação é opcional.
+		\question % Definir a pontuação é opcional. Ao se definir junto do comando \question o LaTeX faz cálculos para mostrar a quantidade total de pontos da prova. Não há necessidade desse cálculo, portanto, caso o professor queira, talvez seja melhor acrescentar a pontuação da forma que melhor lhe convir.
+		Mais uma questão de exemplo: a definição da pontuação é opcional [1,0].
 		%-----------------------------------------------------------------------
 		\question
 		Uma questão pode também ser dividida em partes listadas como letras.
@@ -131,19 +131,24 @@
 		\justifying
 		Uma questão pode ter outros tipos de solução (no arquivo UninassauProva.sty tem um trecho onde é possível fazer outras configurações no ambiente de solução):
 			\begin{solution}
-				\justifying Solução utilizando o ambiente \texttt{solution}. Se \texttt{printanswers} estiver desabilitado, um espaço em branco do mesmo tamanho da solução será posto no lugar, como se tivesse sido utilizado o comando \texttt{vspace}. Além disso todos os ambientes de solução recebem um parâmetro a mais definindo a altura que o ambiente deve ter caso a impressão da solução esteja desabilitada.
+				\justifying Solução utilizando o ambiente \texttt{solution}. Se \texttt{printanswers} estiver desabilitado, você deve fornecer o tamanho do espaço em branco que será posto no lugar da solução. Caso esse valor não seja especificado, o LaTeX não acrescentará espaço em branco.\\ 
+                Ex.: \verb*|\begin{solution}[5cm]|
 			\end{solution}
 			\begin{solutionorbox}
-				Solução com o ambiente \texttt{solutionorbox}. Se a solução não for impressa, haverá no lugar uma caixa de texto em branco.
+				Solução com o ambiente \texttt{solutionorbox}. Se a solução não for impressa, haverá no lugar uma caixa de texto em branco, do tamanho especificado pelo usuário.\\ 
+                Ex.: \verb*|\begin{solutionorbox}[2cm]|
 			\end{solutionorbox}
 			\begin{solutionorlines}
-				Solução com o ambiente \texttt{solutionorlines}. Se a solução não for impressa, haverá no lugar linhas para o aluno escrever.
+				Solução com o ambiente \texttt{solutionorlines}. Se a solução não for impressa, haverá no lugar linhas para o aluno escrever.\\
+                Ex.: \verb*|\begin{solutionorlines}[2cm]|
 			\end{solutionorlines}
 			\begin{solutionordottedlines}
-				Solução com o ambiente \texttt{solutionordottedlines}. Se a solução não for impressa, haverá no lugar linhas pontilhadas para o aluno escrever.
+				Solução com o ambiente \texttt{solutionordottedlines}. Se a solução não for impressa, haverá no lugar linhas pontilhadas para o aluno escrever.\\
+                Ex.: \verb*|\begin{solutionordottedlines}[2cm]|
 			\end{solutionordottedlines}
 			\begin{solutionorgrid}
-				Solução com o ambiente \texttt{solutionorgrid}. Se a solução não for impressa, haverá no lugar uma grade.
+				Solução com o ambiente \texttt{solutionorgrid}. Se a solução não for impressa, haverá no lugar uma grade.\\
+                Ex.: \verb*|\begin{solutionorgrid}[2cm]|
 			\end{solutionorgrid}
 		%-----------------------------------------------------------------------
 		% A linha abaixo serve para formatar a aparência da questão bônus.
