@@ -26,15 +26,15 @@
 		% Comando para deixar os textos justificados. É necessário repetir o comando para cada novo ambiente.
 		\justifying
 		% Cada novo comando \question iniciará uma nova questão. A numeração será adicionada automaticamente.
+		\question % Definir a pontuação é opcional. Ao se definir junto do comando \question o LaTeX faz cálculos para mostrar a quantidade total de pontos da prova. Não há necessidade desse cálculo, portanto, caso o professor queira, talvez seja melhor acrescentar a pontuação da forma que melhor lhe convir.
+		Mais uma questão de exemplo: a definição da pontuação é opcional. [1,0]
+		%-----------------------------------------------------------------------
 		\question[1] % O número dentro dos colchetes é o valor da questão.
 		Este é o exemplo de uma questão: o que significa o valor entre colchetes?
 		%-----------------------------------------------------------------------
 		\question[1\half] % Não é possível uma questão ter pontuação "quebrada", ou seja, 1,5. Mas é possível expressar com frações. Outra solução é expressar a pontuação entre 0 e 100.
 		Este é o exemplo de uma questão contendo equações ou fórmulas:\\ 
-		$x^{2} + 2\pi + \pi^{2}$
-		%-----------------------------------------------------------------------
-		\question % Definir a pontuação é opcional. Ao se definir junto do comando \question o LaTeX faz cálculos para mostrar a quantidade total de pontos da prova. Não há necessidade desse cálculo, portanto, caso o professor queira, talvez seja melhor acrescentar a pontuação da forma que melhor lhe convir.
-		Mais uma questão de exemplo: a definição da pontuação é opcional [1,0].
+        $x^{2} + 2\pi + \pi^{2}$
 		%-----------------------------------------------------------------------
 		\question
 		Uma questão pode também ser dividida em partes listadas como letras.

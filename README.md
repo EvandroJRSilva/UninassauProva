@@ -6,8 +6,6 @@ O template é totalmente gratuito para utilizar e livre para ser modificado.
 
 Fique à vontade para sugerir quaisquer modificações e informar sobre erros.
 
-Assim que a versão final l1.0 for finalizada, publicarei o template no Overleaf também.
-
 # Changelog
 
 ## l0.5
@@ -48,7 +46,13 @@ Assim que a versão final l1.0 for finalizada, publicarei o template no Overleaf
 
 ## l1.0.1
 
-- Valor de cada questão passa a ser mostrada apenas no fim do enunciado, pois não há necessidade de se fazer o cálculo pelo LaTeX.
+- Valor de cada questão passa a ser mostrada apenas no fim do enunciado, pois não há necessidade de se fazer o cálculo pelo $\LaTeX$.
 - Espaço extra para o cabeçalho poder aparecer por completo em todas as páginas, exceto na primeira.
 - Informações mais precisas e com exemplos no uso do ambiente *solution* e suas variantes.
 - Changelog de volta ao README.
+- Esta é a versão presente no Overleaf.
+
+## l1.0.2
+
+- Leve modificação na tabela de informações que aparece na primeira página. O campo reservado para o preenchimento de `CÓDIGO DA TURMA` ficou maior, em detrimento do campo de preenchimento de `TURMA`.
+- Reordenação das três primeiras questões de exemplo para deixar a sugestão de pontuação ao fim do enunciado mais evidente. A forma de mostrar a pontuação pelo $\LaTeX$ permaneceu, porém mostradas nas questões 2 e 3.
